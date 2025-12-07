@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "WebFetch(domain:chongsamo.co.kr)",
+      "Bash(npm run build:*)",
+      "Bash(npm run lint:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: Complete chongsamo.co.kr website renewal\n\n- Add modern landing page with hero, categories, new arrivals, best sellers\n- Create product listing page with filtering and sorting\n- Create product detail page with image gallery and specs\n- Add login and registration pages with Korean social login\n- Add shopping cart with quantity controls and order summary\n- Add my page dashboard (orders, wishlist, points, coupons, profile)\n- Use real product images from chongsamo.co.kr\n- Add Noto Sans KR font for Korean text support\n- Implement responsive design with dark mode support\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
