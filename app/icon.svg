@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F7931E;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="15" fill="url(#grad)"/>
+  <!-- Letter C for Chongsamo -->
+  <path d="M16 8c-4.4 0-8 3.6-8 8s3.6 8 8 8c2.2 0 4.2-.9 5.7-2.3l-2.1-2.1c-1 .9-2.2 1.4-3.6 1.4-2.8 0-5-2.2-5-5s2.2-5 5-5c1.4 0 2.6.5 3.6 1.4l2.1-2.1C20.2 8.9 18.2 8 16 8z" fill="white"/>
+</svg>

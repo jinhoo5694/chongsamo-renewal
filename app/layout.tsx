@@ -11,6 +11,14 @@ const notoSansKR = Noto_Sans_KR({
 export const metadata: Metadata = {
   title: "총사모 - 대한민국 No.1 에어소프트 전문 쇼핑몰",
   description: "가스건, 전동건, 스나이퍼, 샷건 및 에어소프트 액세서리 전문 쇼핑몰. 정품 보장, 빠른 배송, 전문 상담 서비스.",
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [
+      { url: '/apple-icon.svg', type: 'image/svg+xml' },
+    ],
+  },
 };
 
 export default function RootLayout({

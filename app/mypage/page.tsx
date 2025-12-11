@@ -12,7 +12,59 @@ const menuItems = [
   { id: 'reviews', label: '내 리뷰', icon: '⭐' },
   { id: 'points', label: '적립금', icon: '💰' },
   { id: 'coupons', label: '쿠폰', icon: '🎟️' },
+  { id: 'addresses', label: '배송지 관리', icon: '🏠' },
+  { id: 'posts', label: '내 게시글', icon: '📝' },
   { id: 'profile', label: '회원정보', icon: '👤' },
+];
+
+const savedAddresses = [
+  {
+    id: 1,
+    name: '집',
+    recipient: '홍길동',
+    phone: '010-1234-5678',
+    address: '서울특별시 강남구 테헤란로 123',
+    addressDetail: '4층 401호',
+    postcode: '06234',
+    isDefault: true,
+  },
+  {
+    id: 2,
+    name: '회사',
+    recipient: '홍길동',
+    phone: '010-1234-5678',
+    address: '서울특별시 서초구 서초대로 456',
+    addressDetail: '10층',
+    postcode: '06789',
+    isDefault: false,
+  },
+];
+
+const myPosts = [
+  {
+    id: 1,
+    type: '상품 Q&A',
+    title: 'VFC GLOCK45 호환 매거진 문의드립니다',
+    date: '2024-12-05',
+    status: 'answered',
+    replies: 1,
+  },
+  {
+    id: 2,
+    type: '사용후기',
+    title: '역시 VFC입니다! 매우 만족합니다',
+    date: '2024-12-03',
+    status: 'published',
+    replies: 0,
+  },
+  {
+    id: 3,
+    type: '1:1 상담',
+    title: '배송 일정 확인 부탁드립니다',
+    date: '2024-12-01',
+    status: 'answered',
+    replies: 1,
+  },
 ];
 
 const orderHistory = [
@@ -360,6 +412,121 @@ export default function MyPage() {
                   </h2>
                   <div className="bg-white dark:bg-zinc-900 rounded-xl p-6 text-center">
                     <p className="text-zinc-500">작성한 리뷰가 없습니다.</p>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'addresses' && (
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-xl font-bold text-zinc-900 dark:text-white">
+                      배송지 관리
+                    </h2>
+                    <button className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium rounded-lg transition">
+                      + 새 배송지 추가
+                    </button>
+                  </div>
+                  <div className="space-y-4">
+                    {savedAddresses.map((address) => (
+                      <div
+                        key={address.id}
+                        className={`bg-white dark:bg-zinc-900 rounded-xl p-6 ${
+                          address.isDefault ? 'ring-2 ring-orange-500' : ''
+                        }`}
+                      >
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold text-zinc-900 dark:text-white">
+                              {address.name}
+                            </span>
+                            {address.isDefault && (
+                              <span className="px-2 py-0.5 bg-orange-100 dark:bg-orange-500/20 text-orange-500 text-xs font-medium rounded">
+                                기본 배송지
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex gap-2">
+                            <button className="text-sm text-zinc-500 hover:text-orange-500 transition">
+                              수정
+                            </button>
+                            <button className="text-sm text-zinc-500 hover:text-red-500 transition">
+                              삭제
+                            </button>
+                          </div>
+                        </div>
+                        <div className="text-sm text-zinc-600 dark:text-zinc-400 space-y-1">
+                          <p>
+                            <span className="text-zinc-900 dark:text-white">{address.recipient}</span>{' '}
+                            {address.phone}
+                          </p>
+                          <p>
+                            [{address.postcode}] {address.address} {address.addressDetail}
+                          </p>
+                        </div>
+                        {!address.isDefault && (
+                          <button className="mt-4 text-sm text-orange-500 hover:underline">
+                            기본 배송지로 설정
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'posts' && (
+                <div>
+                  <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-6">
+                    내 게시글
+                  </h2>
+                  <div className="bg-white dark:bg-zinc-900 rounded-xl overflow-hidden">
+                    {myPosts.length > 0 ? (
+                      <>
+                        <div className="hidden md:grid md:grid-cols-12 gap-4 px-6 py-3 bg-zinc-50 dark:bg-zinc-800 text-sm font-medium text-zinc-500">
+                          <div className="col-span-2">유형</div>
+                          <div className="col-span-6">제목</div>
+                          <div className="col-span-2 text-center">등록일</div>
+                          <div className="col-span-2 text-center">상태</div>
+                        </div>
+                        {myPosts.map((post) => (
+                          <div
+                            key={post.id}
+                            className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 px-6 py-4 border-t border-zinc-100 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition"
+                          >
+                            <div className="col-span-2 text-sm text-zinc-500">{post.type}</div>
+                            <div className="col-span-6">
+                              <Link
+                                href="#"
+                                className="text-zinc-900 dark:text-white hover:text-orange-500 transition"
+                              >
+                                {post.title}
+                                {post.replies > 0 && (
+                                  <span className="ml-2 text-orange-500 text-sm">[{post.replies}]</span>
+                                )}
+                              </Link>
+                            </div>
+                            <div className="col-span-2 text-center text-sm text-zinc-500">
+                              {post.date}
+                            </div>
+                            <div className="col-span-2 text-center">
+                              <span
+                                className={`px-2 py-1 text-xs font-medium rounded ${
+                                  post.status === 'answered'
+                                    ? 'bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-400'
+                                    : 'bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-400'
+                                }`}
+                              >
+                                {post.status === 'answered' ? '답변완료' : '게시됨'}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </>
+                    ) : (
+                      <div className="py-12 text-center text-zinc-500">
+                        작성한 게시글이 없습니다.
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
